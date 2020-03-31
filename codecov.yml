@@ -1,0 +1,12 @@
+coverage:
+  status:
+    project:
+      target: 90% # todo, make it 100
+      threshold: 5%
+flags:
+  projectA:
+    paths:
+      - packages/ckeditor5-autoformat
+  projectB:
+    paths:
+      - packages/ckeditor5-block-quote
