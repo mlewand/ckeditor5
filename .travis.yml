@@ -17,4 +17,5 @@ install:
 - yarn install
 script:
 - yarn run test --reporter=dots --production --coverage
-- yarn run docs:api --validate-only
+- codecov
+# - yarn run docs:api --validate-only # @todo bring it back, commented out to speed up the execution

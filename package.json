@@ -87,6 +87,7 @@
     "@ckeditor/ckeditor5-track-changes": "^18.0.0",
     "@wiris/mathtype-ckeditor5": "^7.19.0",
     "babel-standalone": "^6.26.0",
+    "codecov": "^3.6.5",
     "css-loader": "^1.0.0",
     "eslint": "^5.5.0",
     "eslint-config-ckeditor5": "^2.0.0",
