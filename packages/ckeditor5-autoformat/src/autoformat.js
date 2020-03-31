@@ -17,6 +17,7 @@ import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
  * For a detailed overview, check the {@glink features/autoformat Autoformatting feature documentation}
  * and the {@glink api/autoformat package page}.
  *
+ * @todo this is a test comment, should be removed - and first of all, not merged.
  * @extends module:core/plugin~Plugin
  */
 export default class Autoformat extends Plugin {
