@@ -16,5 +16,5 @@ echo $csvChangedPackages
 `yarn run test -f $csvChangedPackages --reporter=dots --production --coverage`
 
 for package in $changedPackages; do
-  `codecov -F $package`
+  `npx codecov -F $package`
 done
