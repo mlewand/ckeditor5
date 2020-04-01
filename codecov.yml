@@ -19,3 +19,6 @@ flags:
   block-quote:
     paths:
       - packages/ckeditor5-block-quote
+  remove-format:
+    paths:
+      - packages/ckeditor5-remove-format
