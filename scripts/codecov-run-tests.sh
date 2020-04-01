@@ -13,8 +13,8 @@ csvChangedPackages=$(echo $changedPackages | sed -e 's/ /,/g')
 echo $changedPackages
 echo $csvChangedPackages
 
-`yarn run test -f $csvChangedPackages --reporter=dots --production --coverage`
+yarn run test -f $csvChangedPackages --reporter=dots --production --coverage
 
 for package in $changedPackages; do
-  `npx codecov -F $package`
+  npx codecov -F $package
 done
