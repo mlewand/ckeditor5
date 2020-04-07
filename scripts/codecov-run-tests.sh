@@ -7,7 +7,14 @@
 # in case travis is running the script on non-master branch
 git fetch --depth=50 origin refs/heads/master:refs/heads/master
 
-changedPackages=$(git diff master --stat | head -n-1  | awk '{$1=$1};1' | sed -e '/^packages\//!s/.*/ckeditor5/' -e 's#^\s*packages\/ckeditor5\?-\([^\/]\+\).\+#\1#' | sort -u)
+if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+  # Non-pull requests should run check on all packages.
+  changedPackages=$(ls packages)
+  changedPackages="$changedPackages ckeditor"
+else
+  changedPackages=$(git diff master --stat | head -n-1  | awk '{$1=$1};1' | sed -e '/^packages\//!s/.*/ckeditor5/' -e 's#^\s*packages\/ckeditor5\?-\([^\/]\+\).\+#\1#' | sort -u)
+fi
+
 csvChangedPackages=$(echo $changedPackages | sed -e 's/ /,/g')
 
 echo $changedPackages
