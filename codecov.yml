@@ -1,15 +1,17 @@
 coverage:
   status:
     project:
-      target: 90% # todo, make it 100
-      threshold: 5%
+      target: 100%
 flags:
-  autoformat:
+  adapter-ckfinder:
     paths:
-      - packages/ckeditor5-autoformat
+      - packages/ckeditor5-adapter-ckfinder
   alignment:
     paths:
       - packages/ckeditor5-alignment
+  autoformat:
+    paths:
+      - packages/ckeditor5-autoformat
   autosave:
     paths:
       - packages/ckeditor5-autosave
@@ -19,6 +21,138 @@ flags:
   block-quote:
     paths:
       - packages/ckeditor5-block-quote
+  build-balloon:
+    paths:
+      - packages/ckeditor5-build-balloon
+  build-balloon-block:
+    paths:
+      - packages/ckeditor5-build-balloon-block
+  build-classic:
+    paths:
+      - packages/ckeditor5-build-classic
+  build-decoupled-document:
+    paths:
+      - packages/ckeditor5-build-decoupled-document
+  build-inline:
+    paths:
+      - packages/ckeditor5-build-inline
+  ckfinder:
+    paths:
+      - packages/ckeditor5-ckfinder
+  clipboard:
+    paths:
+      - packages/ckeditor5-clipboard
+  cloud-services:
+    paths:
+      - packages/ckeditor5-cloud-services
+  code-block:
+    paths:
+      - packages/ckeditor5-code-block
+  core:
+    paths:
+      - packages/ckeditor5-core
+  easy-image:
+    paths:
+      - packages/ckeditor5-easy-image
+  editor-balloon:
+    paths:
+      - packages/ckeditor5-editor-balloon
+  editor-classic:
+    paths:
+      - packages/ckeditor5-editor-classic
+  editor-decoupled:
+    paths:
+      - packages/ckeditor5-editor-decoupled
+  editor-inline:
+    paths:
+      - packages/ckeditor5-editor-inline
+  engine:
+    paths:
+      - packages/ckeditor5-engine
+  enter:
+    paths:
+      - packages/ckeditor5-enter
+  essentials:
+    paths:
+      - packages/ckeditor5-essentials
+  font:
+    paths:
+      - packages/ckeditor5-font
+  heading:
+    paths:
+      - packages/ckeditor5-heading
+  highlight:
+    paths:
+      - packages/ckeditor5-highlight
+  horizontal-line:
+    paths:
+      - packages/ckeditor5-horizontal-line
+  image:
+    paths:
+      - packages/ckeditor5-image
+  indent:
+    paths:
+      - packages/ckeditor5-indent
+  link:
+    paths:
+      - packages/ckeditor5-link
+  list:
+    paths:
+      - packages/ckeditor5-list
+  markdown-gfm:
+    paths:
+      - packages/ckeditor5-markdown-gfm
+  media-embed:
+    paths:
+      - packages/ckeditor5-media-embed
+  mention:
+    paths:
+      - packages/ckeditor5-mention
+  page-break:
+    paths:
+      - packages/ckeditor5-page-break
+  paragraph:
+    paths:
+      - packages/ckeditor5-paragraph
+  paste-from-office:
+    paths:
+      - packages/ckeditor5-paste-from-office
   remove-format:
     paths:
       - packages/ckeditor5-remove-format
+  restricted-editing:
+    paths:
+      - packages/ckeditor5-restricted-editing
+  special-characters:
+    paths:
+      - packages/ckeditor5-special-characters
+  table:
+    paths:
+      - packages/ckeditor5-table
+  theme-lark:
+    paths:
+      - packages/ckeditor5-theme-lark
+  typing:
+    paths:
+      - packages/ckeditor5-typing
+  ui:
+    paths:
+      - packages/ckeditor5-ui
+  undo:
+    paths:
+      - packages/ckeditor5-undo
+  upload:
+    paths:
+      - packages/ckeditor5-upload
+  utils:
+    paths:
+      - packages/ckeditor5-utils
+  watchdog:
+    paths:
+      - packages/ckeditor5-watchdog
+  widget:
+    paths:
+      - packages/ckeditor5-widget
+  word-count:
+    paths:
+      - packages/ckeditor5-word-count
