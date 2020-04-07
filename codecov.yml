@@ -3,7 +3,7 @@ coverage:
     project:
       target: 100%
 flags:
-  adapter-ckfinder:
+  adapter_ckfinder:
     paths:
       - packages/ckeditor5-adapter-ckfinder
   alignment:
@@ -15,25 +15,25 @@ flags:
   autosave:
     paths:
       - packages/ckeditor5-autosave
-  basic-styles:
+  basic_styles:
     paths:
       - packages/ckeditor5-basic-styles
-  block-quote:
+  block_quote:
     paths:
       - packages/ckeditor5-block-quote
-  build-balloon:
+  build_balloon:
     paths:
       - packages/ckeditor5-build-balloon
-  build-balloon-block:
+  build_balloon_block:
     paths:
       - packages/ckeditor5-build-balloon-block
-  build-classic:
+  build_classic:
     paths:
       - packages/ckeditor5-build-classic
-  build-decoupled-document:
+  build_decoupled_document:
     paths:
       - packages/ckeditor5-build-decoupled-document
-  build-inline:
+  build_inline:
     paths:
       - packages/ckeditor5-build-inline
   ckfinder:
@@ -42,28 +42,28 @@ flags:
   clipboard:
     paths:
       - packages/ckeditor5-clipboard
-  cloud-services:
+  cloud_services:
     paths:
       - packages/ckeditor5-cloud-services
-  code-block:
+  code_block:
     paths:
       - packages/ckeditor5-code-block
   core:
     paths:
       - packages/ckeditor5-core
-  easy-image:
+  easy_image:
     paths:
       - packages/ckeditor5-easy-image
-  editor-balloon:
+  editor_balloon:
     paths:
       - packages/ckeditor5-editor-balloon
-  editor-classic:
+  editor_classic:
     paths:
       - packages/ckeditor5-editor-classic
-  editor-decoupled:
+  editor_decoupled:
     paths:
       - packages/ckeditor5-editor-decoupled
-  editor-inline:
+  editor_inline:
     paths:
       - packages/ckeditor5-editor-inline
   engine:
@@ -84,7 +84,7 @@ flags:
   highlight:
     paths:
       - packages/ckeditor5-highlight
-  horizontal-line:
+  horizontal_line:
     paths:
       - packages/ckeditor5-horizontal-line
   image:
@@ -99,37 +99,37 @@ flags:
   list:
     paths:
       - packages/ckeditor5-list
-  markdown-gfm:
+  markdown_gfm:
     paths:
       - packages/ckeditor5-markdown-gfm
-  media-embed:
+  media_embed:
     paths:
       - packages/ckeditor5-media-embed
   mention:
     paths:
       - packages/ckeditor5-mention
-  page-break:
+  page_break:
     paths:
       - packages/ckeditor5-page-break
   paragraph:
     paths:
       - packages/ckeditor5-paragraph
-  paste-from-office:
+  paste_from_office:
     paths:
       - packages/ckeditor5-paste-from-office
-  remove-format:
+  remove_format:
     paths:
       - packages/ckeditor5-remove-format
-  restricted-editing:
+  restricted_editing:
     paths:
       - packages/ckeditor5-restricted-editing
-  special-characters:
+  special_characters:
     paths:
       - packages/ckeditor5-special-characters
   table:
     paths:
       - packages/ckeditor5-table
-  theme-lark:
+  theme_lark:
     paths:
       - packages/ckeditor5-theme-lark
   typing:
@@ -153,6 +153,6 @@ flags:
   widget:
     paths:
       - packages/ckeditor5-widget
-  word-count:
+  word_count:
     paths:
       - packages/ckeditor5-word-count

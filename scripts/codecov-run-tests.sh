@@ -18,14 +18,14 @@ else
   changedPackages=$(git diff master --stat | head -n-1 | awk '{$1=$1};1' | sed -e '/^packages\//!s/.*/ckeditor5/' -e 's#^\s*packages\/ckeditor5\?-\([^\/]\+\).\+#\1#' | sort -u)
 fi
 
-# Replacing dashes with underscore, as codecov flags needs to match ^[\w\,]+$ regexp.
-csvChangedPackages=$(echo $changedPackages | sed -e 's/ /,/g -e s/\-/_/g ')
+csvChangedPackages=$(echo $changedPackages | sed -e 's/ /,/g')
 
 echo "Following packages were detected:"
 echo $csvChangedPackages
 
 yarn run test -f $csvChangedPackages --reporter=dots --production --coverage
 
-for package in $changedPackages; do
+# Replacing dashes with underscore, as codecov flags needs to match ^[\w\,]+$ regexp.
+for package in $(echo $changedPackages | sed -e 's/\-/_/g'); do
   npx codecov -F $package
 done
