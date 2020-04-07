@@ -21,7 +21,6 @@ flags:
   block-quote:
     paths:
       - packages/ckeditor5-block-quote
-<<<<<<< HEAD
   build-balloon:
     paths:
       - packages/ckeditor5-build-balloon
@@ -157,8 +156,3 @@ flags:
   word-count:
     paths:
       - packages/ckeditor5-word-count
-=======
-  remove-format:
-    paths:
-      - packages/ckeditor5-remove-format
->>>>>>> e33eca80c6... Intenral: Added remove format to known codecov packages.
