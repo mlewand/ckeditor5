@@ -127,3 +127,5 @@ export default class BlockQuoteEditing extends Plugin {
 		} );
 	}
 }
+
+// foo
