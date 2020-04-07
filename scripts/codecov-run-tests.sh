@@ -8,6 +8,7 @@
 git fetch --depth=50 origin refs/heads/master:refs/heads/master
 
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+  echo "Running full code coverage(TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST)"
   # Non-pull requests should run check on all packages.
   # It's important to upload results for each package on master, so that pull requests that will follow have a reference code coverage for a given package.
   changedPackages=$(ls packages -1 | sed -e 's#^ckeditor5\?-\(.\+\)$#\1#')
@@ -17,9 +18,10 @@ else
   changedPackages=$(git diff master --stat | head -n-1 | awk '{$1=$1};1' | sed -e '/^packages\//!s/.*/ckeditor5/' -e 's#^\s*packages\/ckeditor5\?-\([^\/]\+\).\+#\1#' | sort -u)
 fi
 
-csvChangedPackages=$(echo $changedPackages | sed -e 's/ /,/g')
+# Replacing dashes with underscore, as codecov flags needs to match ^[\w\,]+$ regexp.
+csvChangedPackages=$(echo $changedPackages | sed -e 's/ /,/g -e s/\-/_/g ')
 
-echo $changedPackages
+echo "Following packages were detected:"
 echo $csvChangedPackages
 
 yarn run test -f $csvChangedPackages --reporter=dots --production --coverage
