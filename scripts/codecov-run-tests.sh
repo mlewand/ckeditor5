@@ -5,7 +5,7 @@
 
 packages=$(ls packages -1 | sed -e 's#^ckeditor5\?-\(.\+\)$#\1#')
 
-i=0
+# i=0
 
 errorOccured=0
 
@@ -15,12 +15,12 @@ rm -r -f .nyc_output
 mkdir .nyc_output
 
 for package in $packages; do
-  i=$((i+1))
+  # i=$((i+1))
 
-  if ((i > 3)); then
-    # for testing purpose use limited number of packages
-    break
-  fi
+  # if ((i > 3)); then
+  #   # for testing purpose use limited number of packages
+  #   break
+  # fi
 
   yarn run test -f $package --reporter=dots --production --coverage
   echo $package
