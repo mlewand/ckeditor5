@@ -14,6 +14,8 @@ mkdir _coverage
 rm -r -f .nyc_output
 mkdir .nyc_output
 
+failedPackages=""
+
 for package in $packages; do
   # i=$((i+1))
 
@@ -36,8 +38,9 @@ for package in $packages; do
 
   if [ "$?" -ne "0" ]; then
     echo "💥 $package doesn't have required code coverage 💥"
+    failedPackages="$failedPackages $package"
     errorOccured=1
-    exit 1
+    # exit 1
   fi
 done;
 
@@ -59,6 +62,6 @@ npx nyc merge _coverage .nyc_output/coverage-final.json
 codecov -f .nyc_output/coverage-final.json
 
 if [ "$errorOccured" -eq "1" ]; then
-  echo "Some packages did not provide required code coverage."
+  echo "Following packages did not provide required code coverage: $failedPackages"
   exit 1
 fi
