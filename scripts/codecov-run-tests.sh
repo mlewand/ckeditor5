@@ -16,6 +16,10 @@ mkdir .nyc_output
 
 failedPackages=""
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m'
+
 for package in $packages; do
   # i=$((i+1))
 
@@ -24,8 +28,10 @@ for package in $packages; do
   #   break
   # fi
 
-  yarn run test -f $package --reporter=dots --production --coverage
-  echo $package
+
+  echo -e "Running tests for: ${GREEN}$package${NC}"
+
+  yarn run test -f $package --reporter=dots --production --coverage > /dev/null
 
   mkdir _coverage/$package
 
@@ -40,9 +46,10 @@ for package in $packages; do
     echo "💥 $package doesn't have required code coverage 💥"
     failedPackages="$failedPackages $package"
     errorOccured=1
-    # exit 1
   fi
 done;
+
+echo "Creating a combined code coverage report"
 
 # Combined file will be used for full coverage (as if yarn run test -c was run).
 # mkdir _coverage/_combined
@@ -62,6 +69,6 @@ npx nyc merge _coverage .nyc_output/coverage-final.json
 codecov -f .nyc_output/coverage-final.json
 
 if [ "$errorOccured" -eq "1" ]; then
-  echo "Following packages did not provide required code coverage: $failedPackages"
-  exit 1
+  echo -e "Following packages did not provide required code coverage: ${RED}$package${NC}"
+  exit 1 # Will break the CI build
 fi
