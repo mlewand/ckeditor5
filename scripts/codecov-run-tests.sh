@@ -3,29 +3,60 @@
 # @license Copyright (c) 2003-2020, CKSource - Frederico Knabben. All rights reserved.
 # For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 
-# master needs to be explicitly fetched to make a diff https://travis-ci.community/t/setting-an-environment-variable-with-git-diff-master-fails/6018/9
-# in case travis is running the script on non-master branch
-git fetch --depth=50 origin refs/heads/master:refs/heads/master
+packages=$(ls packages -1 | sed -e 's#^ckeditor5\?-\(.\+\)$#\1#')
 
-if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-  echo "Running full code coverage(TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST)"
-  # Non-pull requests should run check on all packages.
-  # It's important to upload results for each package on master, so that pull requests that will follow have a reference code coverage for a given package.
-  changedPackages=$(ls packages -1 | sed -e 's#^ckeditor5\?-\(.\+\)$#\1#')
-  LF=$'\n'
-  changedPackages="${changedPackages}${LF}ckeditor5"
-else
-  changedPackages=$(git diff master --stat | head -n-1 | awk '{$1=$1};1' | sed -e '/^packages\//!s/.*/ckeditor5/' -e 's#^\s*packages\/ckeditor5\?-\([^\/]\+\).\+#\1#' | sort -u)
+errorOccured=0
+
+rm -r -f _coverage
+mkdir _coverage
+rm -r -f .nyc_output
+mkdir .nyc_output
+
+failedPackages=""
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m'
+
+for package in $packages; do
+  echo -e "Running tests for: ${GREEN}$package${NC}"
+
+  # Ignoring stdout for readability. Stderro is ignored too, because we get regular "(node:14303) DeprecationWarning: Tapable.plugin is deprecated. Use new API on `.hooks` instead".
+  yarn run test -f $package --reporter=dots --production --coverage &> /dev/null
+
+  mkdir _coverage/$package
+
+  cp coverage/*/coverage-final.json .nyc_output
+
+  # Keep a copy that will be used for merging to make a combined report.
+  cp .nyc_output/coverage-final.json _coverage/coverage-$package.json
+
+  npx nyc check-coverage --branches 100 --functions 100 --lines 100 --statements 100
+
+  if [ "$?" -ne "0" ]; then
+    echo -e "💥 ${RED}$package${NC} doesn't have required code coverage 💥"
+    failedPackages="$failedPackages $package"
+    errorOccured=1
+  fi
+done;
+
+echo "Creating a combined code coverage report"
+
+# Combined file will be used for full coverage (as if yarn run test -c was run).
+# mkdir _coverage/_combined
+# npx nyc merge _coverage _coverage/_combined/coverage.json # move the combined straight to nyc directory
+npx nyc merge _coverage .nyc_output/coverage-final.json
+
+# You could attempt to check-coverage here too, but since each subpackage had a correct CC there's no point in doing this
+# for combined result.
+
+codecov -f .nyc_output/coverage-final.json
+
+if [ "$errorOccured" -eq "1" ]; then
+  echo
+  echo "---"
+  echo
+  echo -e "Following packages did not provide required code coverage:${RED}$failedPackages${NC}"
+  echo
+  exit 1 # Will break the CI build
 fi
-
-csvChangedPackages=$(echo $changedPackages | sed -e 's/ /,/g')
-
-echo "Following packages were detected:"
-echo $csvChangedPackages
-
-yarn run test -f $csvChangedPackages --reporter=dots --production --coverage
-
-# Replacing dashes with underscore, as codecov flags needs to match ^[\w\,]+$ regexp.
-for package in $(echo $changedPackages | sed -e 's/\-/_/g'); do
-  npx codecov -F $package
-done
