@@ -30,7 +30,8 @@ for package in $packages; do
 
   echo -e "Running tests for: ${GREEN}$package${NC}"
 
-  yarn run test -f $package --reporter=dots --production --coverage > /dev/null
+  # Ignoring stdout for readability. Stderro is ignored too, because we get regular "(node:14303) DeprecationWarning: Tapable.plugin is deprecated. Use new API on `.hooks` instead".
+  yarn run test -f $package --reporter=dots --production --coverage &> /dev/null
 
   mkdir _coverage/$package
 
@@ -73,7 +74,7 @@ if [ "$errorOccured" -eq "1" ]; then
   echo
   echo "---"
   echo
-  echo -e "Following packages did not provide required code coverage: ${RED}$failedPackages${NC}"
+  echo -e "Following packages did not provide required code coverage:${RED}$failedPackages${NC}"
   echo
   exit 1 # Will break the CI build
 fi
