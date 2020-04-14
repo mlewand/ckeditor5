@@ -28,7 +28,6 @@ for package in $packages; do
   #   break
   # fi
 
-
   echo -e "Running tests for: ${GREEN}$package${NC}"
 
   yarn run test -f $package --reporter=dots --production --coverage > /dev/null
@@ -43,10 +42,12 @@ for package in $packages; do
   npx nyc check-coverage --branches 100 --functions 100 --lines 100 --statements 100
 
   if [ "$?" -ne "0" ]; then
-    echo "💥 $package doesn't have required code coverage 💥"
+    echo -e "💥 ${RED}$package${NC} doesn't have required code coverage 💥"
     failedPackages="$failedPackages $package"
     errorOccured=1
   fi
+
+  echo
 done;
 
 echo "Creating a combined code coverage report"
@@ -69,6 +70,10 @@ npx nyc merge _coverage .nyc_output/coverage-final.json
 codecov -f .nyc_output/coverage-final.json
 
 if [ "$errorOccured" -eq "1" ]; then
-  echo -e "Following packages did not provide required code coverage: ${RED}$package${NC}"
+  echo
+  echo "---"
+  echo
+  echo -e "Following packages did not provide required code coverage: ${RED}$failedPackages${NC}"
+  echo
   exit 1 # Will break the CI build
 fi
