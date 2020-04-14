@@ -5,8 +5,6 @@
 
 packages=$(ls packages -1 | sed -e 's#^ckeditor5\?-\(.\+\)$#\1#')
 
-# i=0
-
 errorOccured=0
 
 rm -r -f _coverage
@@ -21,13 +19,6 @@ GREEN='\033[0;32m'
 NC='\033[0m'
 
 for package in $packages; do
-  # i=$((i+1))
-
-  # if ((i > 3)); then
-  #   # for testing purpose use limited number of packages
-  #   break
-  # fi
-
   echo -e "Running tests for: ${GREEN}$package${NC}"
 
   # Ignoring stdout for readability. Stderro is ignored too, because we get regular "(node:14303) DeprecationWarning: Tapable.plugin is deprecated. Use new API on `.hooks` instead".
@@ -35,8 +26,8 @@ for package in $packages; do
 
   mkdir _coverage/$package
 
-  # cp coverage/*/lcov.info coverage/*/coverage-final.json _coverage/$package
   cp coverage/*/coverage-final.json .nyc_output
+
   # Keep a copy that will be used for merging to make a combined report.
   cp .nyc_output/coverage-final.json _coverage/coverage-$package.json
 
@@ -47,8 +38,6 @@ for package in $packages; do
     failedPackages="$failedPackages $package"
     errorOccured=1
   fi
-
-  echo
 done;
 
 echo "Creating a combined code coverage report"
@@ -60,13 +49,6 @@ npx nyc merge _coverage .nyc_output/coverage-final.json
 
 # You could attempt to check-coverage here too, but since each subpackage had a correct CC there's no point in doing this
 # for combined result.
-
-# # HTML output.
-# # npx istanbul report --root _coverage/_combined --dir _coverage/_output html
-# coverageSummary=$(npx istanbul report --root _coverage/_combined text-summary)
-# echo $coverageSummary
-
-# npx istanbul report --root .nyc_output --dir _coverage/_output html
 
 codecov -f .nyc_output/coverage-final.json
 
