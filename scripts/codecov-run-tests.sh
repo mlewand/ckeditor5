@@ -20,12 +20,16 @@ GREEN='\033[0;32m'
 NC='\033[0m'
 
 for package in $packages; do
+
   echo -e "Running tests for: ${GREEN}$package${NC}"
 
   # Ignoring stdout for readability. Stderro is ignored too, because we get regular "(node:14303) DeprecationWarning: Tapable.plugin is deprecated. Use new API on `.hooks` instead".
-  yarn run test -f $package --reporter=dots --production --coverage &> /dev/null
+  testsOutput=$(yarn run test -f $package --reporter=dots --production --coverage 2>&1 /dev/null)
 
   if [ "$?" -ne "0" ]; then
+    echo "$testsOutput"
+    echo
+
     echo -e "💥 ${RED}$package${NC} failed to pass unit tests 💥"
     failedTestsPackages="$failedTestsPackages $package"
     errorOccured=1
@@ -64,11 +68,11 @@ if [ "$errorOccured" -eq "1" ]; then
   echo "---"
   echo
 
-  if [ "$failedTestsPackages" -ne "" ]; then
+  if ! [[ -z $failedTestsPackages ]]; then
     echo -e "Following packages did not pass unit tests:${RED}$failedTestsPackages${NC}"
   fi
 
-  if [ "$failedCoveragePackages" -ne "" ]; then
+  if ! [[ -z $failedCoveragePackages ]]; then
     echo -e "Following packages did not provide required code coverage:${RED}$failedCoveragePackages${NC}"
   fi
 
