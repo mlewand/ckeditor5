@@ -12,17 +12,28 @@ mkdir _coverage
 rm -r -f .nyc_output
 mkdir .nyc_output
 
-failedPackages=""
+failedTestsPackages=""
+failedCoveragePackages=""
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
 for package in $packages; do
+
   echo -e "Running tests for: ${GREEN}$package${NC}"
 
   # Ignoring stdout for readability. Stderro is ignored too, because we get regular "(node:14303) DeprecationWarning: Tapable.plugin is deprecated. Use new API on `.hooks` instead".
-  yarn run test -f $package --reporter=dots --production --coverage &> /dev/null
+  testsOutput=$(yarn run test -f $package --reporter=dots --production --coverage 2>&1 /dev/null)
+
+  if [ "$?" -ne "0" ]; then
+    echo "$testsOutput"
+    echo
+
+    echo -e "💥 ${RED}$package${NC} failed to pass unit tests 💥"
+    failedTestsPackages="$failedTestsPackages $package"
+    errorOccured=1
+  fi
 
   mkdir _coverage/$package
 
@@ -35,7 +46,7 @@ for package in $packages; do
 
   if [ "$?" -ne "0" ]; then
     echo -e "💥 ${RED}$package${NC} doesn't have required code coverage 💥"
-    failedPackages="$failedPackages $package"
+    failedCoveragePackages="$failedCoveragePackages $package"
     errorOccured=1
   fi
 done;
@@ -56,7 +67,15 @@ if [ "$errorOccured" -eq "1" ]; then
   echo
   echo "---"
   echo
-  echo -e "Following packages did not provide required code coverage:${RED}$failedPackages${NC}"
+
+  if ! [[ -z $failedTestsPackages ]]; then
+    echo -e "Following packages did not pass unit tests:${RED}$failedTestsPackages${NC}"
+  fi
+
+  if ! [[ -z $failedCoveragePackages ]]; then
+    echo -e "Following packages did not provide required code coverage:${RED}$failedCoveragePackages${NC}"
+  fi
+
   echo
   exit 1 # Will break the CI build
 fi
