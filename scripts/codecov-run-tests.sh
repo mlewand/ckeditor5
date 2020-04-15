@@ -42,7 +42,7 @@ for package in $packages; do
   # Keep a copy that will be used for merging to make a combined report.
   cp .nyc_output/coverage-final.json _coverage/coverage-$package.json
 
-  flagName=$(echo $package | sed -e 's/-/_/g')
+  flagName=$(echo $package | sed -e 's/-//g')
   codecov -f _coverage/coverage-$package.json -F $package
 
   npx nyc check-coverage --branches 100 --functions 100 --lines 100 --statements 100
