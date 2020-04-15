@@ -89,7 +89,7 @@ class Token {
 			}
 
 			if ( !this.value ) {
-				this.refreshToken()
+				this._refreshToken()
 					.then( resolve )
 					.catch( reject );
 
@@ -102,9 +102,10 @@ class Token {
 
 	/**
 	 * Refresh token method. Useful in a method form as it can be override in tests.
-	 * @returns {Promise.<String>}
+	 *
+	 * @protected
 	 */
-	refreshToken() {
+	_refreshToken() {
 		return this._refresh()
 			.then( value => this.set( 'value', value ) )
 			.then( () => this );
@@ -123,7 +124,7 @@ class Token {
 	 * @protected
 	 */
 	_startRefreshing() {
-		this._refreshInterval = setInterval( () => this.refreshToken(), this._options.refreshInterval );
+		this._refreshInterval = setInterval( () => this._refreshToken(), this._options.refreshInterval );
 	}
 
 	/**
@@ -156,7 +157,7 @@ class Token {
 mix( Token, ObservableMixin );
 
 /**
- * This function is called in a defined interval by the {@link ~Token} class. It also can be invoked manually.
+ * This function is called in a defined interval by the {@link ~Token} class.
  * It should return a promise, which resolves with the new token value.
  * If any error occurs it should return a rejected promise with an error message.
  *
