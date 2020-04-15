@@ -43,7 +43,7 @@ describe( 'InlineAutoformatEditing', () => {
 				writer.insertText( '*', doc.selection.getFirstPosition() );
 			} );
 
-			expect( getData( model ) ).to.equal( '<paragraph>*foobar*[]</paragraph>' );
+			expect( getData( model ) ).to.equal( '<paragraph>*FOO*[]</paragraph>' );
 		} );
 
 		it( 'should apply an attribute when the pattern is matched', () => {
@@ -65,7 +65,7 @@ describe( 'InlineAutoformatEditing', () => {
 				writer.insertText( '*', doc.selection.getFirstPosition() );
 			} );
 
-			expect( getData( model ) ).to.equal( '<paragraph>*foob*[ar]</paragraph>' );
+			expect( getData( model ) ).to.equal( 'wrong expect' );
 		} );
 	} );
 
