@@ -34,11 +34,9 @@ for package in $packages; do
 
   fold_start "pkg-$package" "Running tests for: ${GREEN}$package${NC}"
 
-  # Ignoring stdout for readability. Stderro is ignored too, because we get regular "(node:14303) DeprecationWarning: Tapable.plugin is deprecated. Use new API on `.hooks` instead".
-  testsOutput=$(yarn run test -f $package --reporter=dots --production --coverage 2>&1 /dev/null)
+  yarn run test -f $package --reporter=dots --production --coverage
 
   if [ "$?" -ne "0" ]; then
-    echo "$testsOutput"
     echo
 
     echo -e "💥 ${RED}$package${NC} failed to pass unit tests 💥"
