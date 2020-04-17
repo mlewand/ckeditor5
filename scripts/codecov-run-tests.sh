@@ -19,9 +19,20 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
+fold_start() {
+  echo -e "travis_fold:start:$1$2"
+  travis_time_start
+}
+
+fold_end() {
+  travis_time_finish
+  echo -e "\ntravis_fold:end:$1\r"
+
+}
+
 for package in $packages; do
 
-  echo -e "Running tests for: ${GREEN}$package${NC}"
+  fold_start "pkg-$package" "Running tests for: ${GREEN}$package${NC}"
 
   # Ignoring stdout for readability. Stderro is ignored too, because we get regular "(node:14303) DeprecationWarning: Tapable.plugin is deprecated. Use new API on `.hooks` instead".
   testsOutput=$(yarn run test -f $package --reporter=dots --production --coverage 2>&1 /dev/null)
@@ -49,6 +60,8 @@ for package in $packages; do
     failedCoveragePackages="$failedCoveragePackages $package"
     errorOccured=1
   fi
+
+  fold_end "pkg-$package"
 done;
 
 echo "Creating a combined code coverage report"
