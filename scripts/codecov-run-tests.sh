@@ -16,7 +16,6 @@ failedTestsPackages=""
 failedCoveragePackages=""
 
 RED='\033[0;31m'
-GREEN='\033[0;32m'
 NC='\033[0m'
 
 # Travis functions inspired by https://github.com/travis-ci/travis-rubies/blob/a10ba31e3f508650204017332a608ef9bce2c733/build.sh.
@@ -62,7 +61,7 @@ fold_end() {
 
 for package in $packages; do
 
-  fold_start "pkg-$package" "Running tests for: ${GREEN}$package${NC}"
+  fold_start "pkg-$package" "Testing $package${NC}"
 
   yarn run test -f $package --reporter=dots --production --coverage
 
