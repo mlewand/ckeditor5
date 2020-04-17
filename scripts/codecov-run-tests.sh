@@ -49,7 +49,7 @@ travis_time_finish() {
 
 
 fold_start() {
-  echo -e "travis_fold:start:$1 $2"
+  echo -e "travis_fold:start:$1\033[33;1m$2\033[0m"
   travis_time_start
 }
 
