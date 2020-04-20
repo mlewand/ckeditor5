@@ -40,7 +40,7 @@ You can find [all the fixed issues in v18.0.0 issues](https://github.com/ckedito
 Major releases (contain major breaking changes):
 
 * [@ckeditor/ckeditor5-editor-inline](https://www.npmjs.com/package/@ckeditor/ckeditor5-editor-inline): v18.0.0 => [v18.1.0](https://github.com/ckeditor/ckeditor5-editor-inline/releases/tag/v18.1.0)
-* [@ckeditor/ckeditor5-engine](https://www.npmjs.com/package/@ckeditor/ckeditor5-engine): v18.0.0 => [v18.2.0](https://github.com/ckeditor/ckeditor5-engine/releases/tag/v18.2.0)
+* [@ckeditor/ckeditor5-engine](https://www.npmjs.com/package/@ckeditor/ckeditor5-engine): v18.0.0 => [v18.1.0](https://github.com/ckeditor/ckeditor5-engine/releases/tag/v18.1.0)
 * [@ckeditor/ckeditor5-markdown-gfm](https://www.npmjs.com/package/@ckeditor/ckeditor5-markdown-gfm): v18.0.0 => [v18.3.0](https://github.com/ckeditor/ckeditor5-markdown-gfm/releases/tag/v18.3.0)
 * [@ckeditor/ckeditor5-ui](https://www.npmjs.com/package/@ckeditor/ckeditor5-ui): v18.0.0 => [v18.4.0](https://github.com/ckeditor/ckeditor5-ui/releases/tag/v18.4.0)
 * [@ckeditor/ckeditor-cloud-services-core](https://www.npmjs.com/package/@ckeditor/ckeditor-cloud-services-core): v18.0.0 => [v18.5.0](https://github.com/ckeditor/ckeditor-cloud-services-core/releases/tag/v18.5.0)
@@ -90,7 +90,7 @@ Major releases (contain major breaking changes):
 * [@ckeditor/ckeditor5-utils](https://www.npmjs.com/package/@ckeditor/ckeditor5-utils): v18.0.0 => [v18.49.0](https://github.com/ckeditor/ckeditor5-utils/releases/tag/v18.49.0)
 * [@ckeditor/ckeditor5-watchdog](https://www.npmjs.com/package/@ckeditor/ckeditor5-watchdog): v18.0.0 => [v18.50.0](https://github.com/ckeditor/ckeditor5-watchdog/releases/tag/v18.50.0)
 * [@ckeditor/ckeditor5-widget](https://www.npmjs.com/package/@ckeditor/ckeditor5-widget): v18.0.0 => [v18.51.0](https://github.com/ckeditor/ckeditor5-widget/releases/tag/v18.51.0)
-* [@ckeditor/ckeditor5-word-count](https://www.npmjs.com/package/@ckeditor/ckeditor5-word-count): v18.0.0 => [v18.52.0](https://github.com/ckeditor/ckeditor5-word-count/releases/tag/v18.52.0)
+* [@ckeditor/ckeditor5-word-count](https://www.npmjs.com/package/@ckeditor/ckeditor5-word-count): v18.0.0 => [v18.1.0](https://github.com/ckeditor/ckeditor5-word-count/releases/tag/v18.1.0)
 
 
 ## [18.0.0](https://github.com/ckeditor/ckeditor5/compare/v17.0.0...v18.0.0) (2020-03-19)
