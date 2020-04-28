@@ -5,7 +5,7 @@ codecov:
     wait_for_ci: false
 
 coverage:
-  coverage.range: 100..100
+  range: 100..100
   status:
     project:
       default:
