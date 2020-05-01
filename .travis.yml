@@ -16,5 +16,5 @@ before_install:
 install:
 - yarn install
 script:
-- ./scripts/codecov-run-tests.sh
-# - yarn run docs:api --validate-only # @todo bring it back, commented out to speed up the execution
+- ./scripts/continuous-integration-run-tests.sh
+- yarn run docs:api --validate-only
