@@ -8,4 +8,5 @@ Testing multiple commits pushed at once, ensuring that no CI is run for each cha
 one
 two
 three
+four
  -->
