@@ -7,4 +7,5 @@ See the [official contributors' guide to CKEditor 5](https://ckeditor.com/docs/c
 foo
 bar
 baz
+bom
 -->
