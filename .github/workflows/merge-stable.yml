@@ -18,7 +18,16 @@ jobs:
           head: stable
         env:
           GITHUB_TOKEN: ${{ secrets.STABLE_MERGE_GITHUB_TOKEN }}
-
+      # Report errors if any
+      - uses: rtCamp/action-slack-notify@v2.0.2
+        id: error_message_slack
+        name: Slack notification
+        # if: steps.merge_action.outputs.status != 201
+        env:
+          SLACK_USERNAME: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_CHANNEL: "cke5-code"
+          SLACK_USERNAME: "ckeditor/ckeditor5 stable merge action"
+          SLACK_MESSAGE: "Message content"
 
 # Error reporting would be nice
 # if: ${{ fromJson(steps.merge_action.outputs.status) != 201 }}
