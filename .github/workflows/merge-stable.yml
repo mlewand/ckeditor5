@@ -24,7 +24,7 @@ jobs:
         name: Slack notification
         # if: steps.merge_action.outputs.status != 201
         env:
-          SLACK_USERNAME: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_CHANNEL: "cke5-code"
           SLACK_USERNAME: "ckeditor/ckeditor5 stable merge action"
           SLACK_MESSAGE: "Message content"
