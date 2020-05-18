@@ -26,8 +26,9 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_CHANNEL: "cke5-code"
-          SLACK_USERNAME: "ckeditor/ckeditor5 stable merge action"
-          SLACK_MESSAGE: "Message content"
+          SLACK_ICON: https://github.com/ckeditor.png?size=48
+          SLACK_USERNAME: "stable auto merge action"
+          SLACK_MESSAGE: ${{ "Message from" + github.repository }}
 
 # Error reporting would be nice
 # if: ${{ fromJson(steps.merge_action.outputs.status) != 201 }}
