@@ -1,0 +1,25 @@
+name: Stable branch auto merge
+
+on:
+	push:
+		branches: [ stable ]
+
+jobs:
+	merge:
+		runs-on: ubuntu-latest
+		steps:
+			# Create check run
+			- uses: octokit/request-action@v2.x
+				id: merge_action
+				with:
+					route: POST /repos/:repository/merges
+					repository: ${{ github.repository }}
+					base: master
+					head: stable
+				env:
+					GITHUB_TOKEN: ${{ secrets.STABLE_MERGE_GITHUB_TOKEN }}
+
+
+# Error reporting would be nice
+# if: ${{ fromJson(steps.merge_action.outputs.status) != 201 }}
+# see https://developer.github.com/v3/repos/merging/#perform-a-merge for error codes
