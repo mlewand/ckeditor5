@@ -5,4 +5,5 @@ See the [official contributors' guide to CKEditor 5](https://ckeditor.com/docs/c
 
 <!-- A pointless change, another change.
 foo
+bar
 -->
