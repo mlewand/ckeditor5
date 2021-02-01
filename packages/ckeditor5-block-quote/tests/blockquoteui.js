@@ -5,6 +5,8 @@
 
 /* global document */
 
+// Sample comment.
+
 import BlockQuoteEditing from '../src/blockquoteediting';
 import BlockQuoteUI from '../src/blockquoteui';
 
