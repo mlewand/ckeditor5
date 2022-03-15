@@ -9,7 +9,7 @@
     "ckeditor5-lib"
   ],
   "dependencies": {
-    "lodash-es": "^4.17.10"
+    "lodash-es": "^4.17.21"
   },
   "devDependencies": {
     "@ckeditor/ckeditor5-build-classic": "^18.14.0",
