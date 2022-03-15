@@ -12,7 +12,7 @@
   "dependencies": {
     "@ckeditor/ckeditor5-core": "^18.21.0",
     "@ckeditor/ckeditor5-utils": "^18.49.0",
-    "lodash-es": "^4.17.10"
+    "lodash-es": "^4.17.21"
   },
   "devDependencies": {
     "@ckeditor/ckeditor5-editor-classic": "^18.24.0",
